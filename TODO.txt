@@ -1,0 +1,94 @@
+🧩 Tâche 1 – Configuration du projet & base technique
+Objectif : Créer la structure du projet et préparer les outils de base côté backend et frontend.
+
+Étapes :
+ Créer la structure du dossier /secure-archiver
+
+ Initialiser le projet Node.js (npm init)
+
+ Installer les dépendances backend :
+express, bcryptjs, jsonwebtoken, multer, adm-zip, sqlite3, crypto, cors
+
+ Créer le projet React (create-react-app frontend)
+
+ Installer axios côté frontend
+
+ Créer les fichiers de base :
+
+server.js
+
+auth.js
+
+zipManager.js
+
+config.js
+
+metadata.db (initialisation)
+
+🔐 Tâche 2 – Authentification et sécurisation de la session
+Objectif : Gérer la connexion utilisateur, la sécurisation de session, et la protection de la base.
+
+Étapes :
+ Création d’un mot de passe maître à la première utilisation
+
+ Authentification avec bcrypt et jsonwebtoken
+
+ Stockage en local sécurisé (pas de cloud)
+
+ Middleware d’expiration de session (ex : 10 minutes d’inactivité)
+
+ Frontend :
+
+ Formulaire de connexion (Login.js)
+
+ Gestion du token JWT
+
+📦 Tâche 3 – Archivage sécurisé et base de données
+Objectif : Créer une archive chiffrée pour chaque donnée et stocker les métadonnées.
+
+Étapes :
+ Implémentation de zipManager.js :
+
+Création d’archive ZIP avec AES-256
+
+Génération de mot de passe unique par archive
+
+Chiffrement du mot de passe via pbkdf2 avec mot de passe utilisateur
+
+ Sauvegarde des métadonnées dans metadata.db
+
+ Création de l’API :
+
+ POST /upload
+
+ GET /archives
+
+ GET /download/:id
+
+ Frontend :
+
+ Composant d’upload (UploadForm.js)
+
+ Liste des archives (ArchiveList.js)
+
+⏱️ Tâche 4 – Expérience utilisateur et sécurité renforcée
+Objectif : Ajouter des fonctions de confort, de sécurité, et tester le projet.
+
+Étapes :
+ Déconnexion automatique après X minutes d’inactivité (TimerLogout.js)
+
+ Sécurisation du frontend :
+
+ Aucune donnée sensible stockée en clair
+
+ Nettoyage mémoire et fichiers temporaires
+
+ Tests manuels :
+
+ Connexion / déconnexion
+
+ Vérification de l’archivage et du chiffrement
+
+ Téléchargement et déchiffrement corrects
+
+ Expiration de session
