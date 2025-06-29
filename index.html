@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safe Student - Coffre-fort étudiant sécurisé</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Vue Authentification -->
+      <div id="auth-view" class="view">
+        <div class="auth-container">
+          <img src="assets/logo.svg" alt="Safe Student Logo" class="logo" />
+          <h1>Safe Student</h1>
+          <p class="subtitle">
+            Coffre-fort numérique zero-knowledge pour étudiants
+          </p>
+
+          <form id="login-form" class="auth-form">
+            <div class="input-group">
+              <label for="password">Mot de passe maître</label>
+              <input type="password" id="password" required />
+            </div>
+            <button type="submit" class="btn-primary">
+              <i class="fas fa-lock-open"></i> Se connecter
+            </button>
+          </form>
+
+          <div class="auth-switch">
+            <p>
+              Nouveau utilisateur ?
+              <a href="#" id="switch-to-signup">Créer un compte</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vue Inscription -->
+      <div id="signup-view" class="view hidden">
+        <div class="auth-container">
+          <img src="assets/logo.svg" alt="Safe Student Logo" class="logo" />
+          <h1>Créer un compte</h1>
+          <p class="subtitle">
+            Protégez vos documents académiques en toute sécurité
+          </p>
+
+          <form id="signup-form" class="auth-form">
+            <div class="input-group">
+              <label for="new-password">Nouveau mot de passe</label>
+              <input type="password" id="new-password" required minlength="8" />
+              <div id="password-strength" class="strength-indicator">
+                Faible
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="confirm-password">Confirmer le mot de passe</label>
+              <input
+                type="password"
+                id="confirm-password"
+                required
+                minlength="8"
+              />
+            </div>
+            <button type="submit" class="btn-primary">
+              <i class="fas fa-key"></i> Créer le compte
+            </button>
+
+            <div class="auth-switch">
+              <p>
+                Déjà un compte ?
+                <a href="#" id="switch-to-login">Se connecter</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Vue Principale -->
+      <div id="main-view" class="view hidden">
+        <header>
+          <div class="header-left">
+            <img src="assets/logo.svg" alt="Logo" class="small-logo" />
+            <h1>Mes Documents</h1>
+          </div>
+          <div class="header-right">
+            <button id="add-doc-btn" class="btn-primary">
+              <i class="fas fa-plus"></i> Ajouter
+            </button>
+            <button id="logout-btn" class="btn-secondary">
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </div>
+        </header>
+
+        <div class="main-container">
+          <aside class="sidebar">
+            <div class="search-box">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Rechercher..."
+              />
+              <i class="fas fa-search"></i>
+            </div>
+
+            <ul class="subject-list">
+              <li class="active" data-subject="all">
+                <i class="fas fa-folder"></i> Tous les documents
+              </li>
+              <li data-subject="informatique">
+                <i class="fas fa-folder"></i> Informatique
+              </li>
+              <li data-subject="mathematiques">
+                <i class="fas fa-folder"></i> Mathématiques
+              </li>
+              <li data-subject="autres">
+                <i class="fas fa-folder"></i> Autres
+              </li>
+            </ul>
+          </aside>
+
+          <main class="content">
+            <div id="upload-area" class="hidden">
+              <div class="upload-container">
+                <div class="drop-zone" id="drop-zone">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  <p>Glissez-déposez vos fichiers ici</p>
+                  <span>ou</span>
+                  <button id="browse-btn" class="btn-secondary">
+                    Parcourir vos fichiers
+                  </button>
+                  <input
+                    type="file"
+                    id="file-input"
+                    multiple
+                    style="display: none"
+                  />
+                </div>
+
+                <div class="upload-options">
+                  <div class="input-group">
+                    <label for="doc-subject">Matière :</label>
+                    <select id="doc-subject">
+                      <option value="informatique">Informatique</option>
+                      <option value="mathematiques">Mathématiques</option>
+                      <option value="autres">Autres</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="doc-name">Nom du document :</label>
+                    <input
+                      type="text"
+                      id="doc-name"
+                      placeholder="Nommez votre document"
+                    />
+                  </div>
+
+                  <button id="upload-btn" class="btn-primary" disabled>
+                    <i class="fas fa-upload"></i> Sauvegarder
+                  </button>
+                  <button id="cancel-upload-btn" class="btn-secondary">
+                    Annuler
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="documents-list">
+              <div class="documents-header">
+                <h2 id="current-subject">Tous les documents</h2>
+                <div class="sort-options">
+                  <span>Trier par :</span>
+                  <select id="sort-select">
+                    <option value="date-desc">Date (récent)</option>
+                    <option value="date-asc">Date (ancien)</option>
+                    <option value="name-asc">Nom (A-Z)</option>
+                    <option value="name-desc">Nom (Z-A)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="documents-grid" id="documents-grid">
+                <!-- Documents will be loaded here -->
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modale de confirmation -->
+    <div id="confirm-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="confirm-title">Confirmation</h3>
+        <p id="confirm-message">
+          Êtes-vous sûr de vouloir effectuer cette action ?
+        </p>
+        <div class="modal-buttons">
+          <button id="confirm-cancel" class="btn-secondary">Annuler</button>
+          <button id="confirm-ok" class="btn-primary">Confirmer</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="modules/utils.js" type="module"></script>
+    <script src="modules/crypto.js" type="module"></script>
+    <script src="modules/storage.js" type="module"></script>
+    <script src="modules/documents.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+    <script>
+      // Ajoute un gestionnaire pour basculer entre connexion et inscription
+      document.addEventListener("DOMContentLoaded", function () {
+        const authView = document.getElementById("auth-view");
+        const signupView = document.getElementById("signup-view");
+        const switchToSignup = document.getElementById("switch-to-signup");
+        const switchToLogin = document.getElementById("switch-to-login");
+
+        if (switchToSignup) {
+          switchToSignup.addEventListener("click", function (e) {
+            e.preventDefault();
+            authView.classList.add("hidden");
+            signupView.classList.remove("hidden");
+          });
+        }
+        if (switchToLogin) {
+          switchToLogin.addEventListener("click", function (e) {
+            e.preventDefault();
+            signupView.classList.add("hidden");
+            authView.classList.remove("hidden");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
