@@ -31,7 +31,7 @@ Application web **100% côté client** où :
 
 ### **Stack technologique**
 ```
-Frontend Pure:    HTML5 + CSS3 + JavaScript ES6
+Frontend Pure:    HTML5 + taildwindcss + JavaScript ES6
 Chiffrement:      Web Crypto API (AES-256-GCM)
 Stockage:         IndexedDB (base locale navigateur)
 Compression:      JSZip (archives côté client)
@@ -94,8 +94,7 @@ Clé maître + Salt unique → HKDF → Clé fichier spécifique
 ### **Organisation des fichiers**
 ```
 safe-student/
-├── 📄 index.html                  ← Page unique (Single Page App)
-├── 🎨 style.css                   ← Styles simples et modernes
+├── 📄 index.html                  ← Page unique (Single Page App) avec taildwindcss pour le style
 ├── ⚡ app.js                      ← Point d'entrée et orchestration
 ├── 🔐 modules/
 │   ├── crypto.js                  ← Chiffrement AES-256 + PBKDF2
@@ -240,7 +239,7 @@ async getDocumentsBySubject(subject)
 
 **🎯 Responsabilité : Interface utilisateur intuitive et moderne**
 
-**Modules principaux : `index.html` + `style.css` + interactions UI**
+**Modules principaux : `index.html` + `taildwindcss` + interactions UI**
 
 **Semaine 1 :**
 - Maquette wireframe simple (Figma ou papier)
@@ -273,7 +272,7 @@ async getDocumentsBySubject(subject)
 - Support présentation démo
 
 **📋 Livrables spécifiques :**
-- Interface complète HTML/CSS
+- Interface complète HTML/taildwindcss
 - Design responsive et accessible
 - Guide utilisateur avec captures
 - Maquettes et documentation UI
@@ -419,7 +418,7 @@ feature → develop (PR + review) → main (release)
 - **Web Crypto API** : Implémentation auditée navigateurs
 
 ### **✅ WEB (déployable partout)**
-- **HTML/CSS/JS pur** : Compatible tous navigateurs
+- **HTML/taildwindcss/JS pur** : Compatible tous navigateurs
 - **Hébergement statique** : Netlify/Vercel/GitHub Pages
 - **HTTPS natif** : Sécurité transport incluse
 - **Progressive** : Peut devenir PWA plus tard
