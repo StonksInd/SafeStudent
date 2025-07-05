@@ -20,7 +20,7 @@ Application web **100% côté client** où :
 - ✅ **Fonctionne sans serveur** (hébergement statique gratuit)
 
 ### **Pourquoi c'est révolutionnaire**
-🚀 **Premier coffre-fort étudiant** avec zero-knowledge  
+🚀 **Premier coffre-fort étudiant**  
 🚀 **Architecture web sans serveur** pour documents sensibles  
 🚀 **Sécurité militaire** mais simplicité d'usage  
 🚀 **Gratuit et open-source** - pas de business model intrusif  
